@@ -42,7 +42,11 @@ class MainWindow(QMainWindow):
         left_ovens_layout = QVBoxLayout(container_widget)
 
         # --- left_top_oven ---
-        left_top_oven_layout = QVBoxLayout()
+        container_widget = QWidget()
+        container_widget.setStyleSheet("background-color: white;")
+        left_ovens_layout.addWidget(container_widget)
+        left_top_oven_layout = QVBoxLayout(container_widget)
+
         left_top_oven_layout.addWidget(QLabel("TOP STEAM OVEN"))
         # - init list -
         left_top_oven_layouts = []
@@ -68,7 +72,11 @@ class MainWindow(QMainWindow):
             tray_id+=1
 
         # --- left_bottom_oven ---
-        left_bottom_oven_layout = QVBoxLayout()
+        container_widget = QWidget()
+        container_widget.setStyleSheet("background-color: white;")
+        left_ovens_layout.addWidget(container_widget)
+        left_bottom_oven_layout = QVBoxLayout(container_widget)
+
         left_bottom_oven_layout.addWidget(QLabel("BOTTOM STEAM OVEN"))
         # - init list -
         left_bottom_oven_layouts = []
@@ -94,8 +102,8 @@ class MainWindow(QMainWindow):
             tray_id+=1
 
         # - Assemble -
-        left_ovens_layout.addLayout(left_top_oven_layout)
-        left_ovens_layout.addLayout(left_bottom_oven_layout)
+        #left_ovens_layout.addLayout(left_top_oven_layout)
+        #left_ovens_layout.addLayout(left_bottom_oven_layout)
 
         # -----------------------------------
         # ----- DISHES AND CENTRAL OVEN -----
