@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):
         # ----- left ovens layout -----
         # -----------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet("background-color: cyan;")
         main_layout.addWidget(container_widget)
         left_ovens_layout = QVBoxLayout(container_widget)
 
@@ -101,7 +101,7 @@ class MainWindow(QMainWindow):
         # ----- DISHES AND CENTRAL OVEN -----
         # -----------------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet("background-color: cyan;")
         main_layout.addWidget(container_widget)
         dishes_and_central_oven_layout = QVBoxLayout(container_widget)
 
@@ -152,7 +152,7 @@ class MainWindow(QMainWindow):
         # ----- right ovens layout -----
         # ------------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet("background-color: cyan;")
         main_layout.addWidget(container_widget)
         right_ovens_layout = QVBoxLayout(container_widget)
 
