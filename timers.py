@@ -23,13 +23,21 @@ class MainWindow(QMainWindow):
         #self.resize(600,200)
         tray_id=0
 
+        # ----- timer ----
+        # Initialize the QTimer
+        self.timer = QTimer(self)
+        # Connect the timeout signal to the update_time function
+        self.timer.timeout.connect(self.update_time)
+        # Start the timer with a 1000ms (1 second) interval
+        self.timer.start(1000)
+
         # ------ Main layout -------
         central = QWidget()
         self.setCentralWidget(central)
         main_layout = QHBoxLayout(central)
 
-        self.plus_buttons = []
-        self.minus_buttons = []
+        self.start_buttons = []
+        self.cancel_buttons = []
         self.dish_labels = []
         self.timer_labels = []
 
@@ -53,18 +61,18 @@ class MainWindow(QMainWindow):
         for i in range (TOP_LEFT_OVEN_SPACES):
             # - append -
             left_top_oven_layouts.append(QHBoxLayout())
-            self.plus_buttons.append(QPushButton("+"))
-            self.plus_buttons[tray_id].tray_id = tray_id
-            self.minus_buttons.append(QPushButton("-"))
-            self.minus_buttons[tray_id].tray_id = tray_id
-            self.dish_labels.append(QLabel("QUICHE"))
+            self.start_buttons.append(QPushButton("start"))
+            self.start_buttons[tray_id].tray_id = tray_id
+            self.cancel_buttons.append(QPushButton("x"))
+            self.cancel_buttons[tray_id].tray_id = tray_id
+            self.dish_labels.append(QLabel("xxxx"))
             self.timer_labels.append(QLabel("00:00"))
             # - connect -
-            self.plus_buttons[tray_id].clicked.connect(self.add_one_minute)
-            self.minus_buttons[tray_id].clicked.connect(self.remove_one_minute)
+            self.start_buttons[tray_id].clicked.connect(self.add_one_minute)
+            self.cancel_buttons[tray_id].clicked.connect(self.remove_one_minute)
             # - add widget -
-            left_top_oven_layouts[i].addWidget(self.plus_buttons[tray_id])
-            left_top_oven_layouts[i].addWidget(self.minus_buttons[tray_id])
+            left_top_oven_layouts[i].addWidget(self.start_buttons[tray_id])
+            left_top_oven_layouts[i].addWidget(self.cancel_buttons[tray_id])
             left_top_oven_layouts[i].addWidget(self.dish_labels[tray_id])
             left_top_oven_layouts[i].addWidget(self.timer_labels[tray_id])
             # - assemble -
@@ -83,18 +91,18 @@ class MainWindow(QMainWindow):
         for i in range (BOTTOM_LEFT_OVEN_SPACES):
             # - append -
             left_bottom_oven_layouts.append(QHBoxLayout())
-            self.plus_buttons.append(QPushButton("+"))
-            self.plus_buttons[tray_id].tray_id = tray_id
-            self.minus_buttons.append(QPushButton("-"))
-            self.minus_buttons[tray_id].tray_id = tray_id
-            self.dish_labels.append(QLabel("QUICHE"))
+            self.start_buttons.append(QPushButton("start"))
+            self.start_buttons[tray_id].tray_id = tray_id
+            self.cancel_buttons.append(QPushButton("x"))
+            self.cancel_buttons[tray_id].tray_id = tray_id
+            self.dish_labels.append(QLabel("xxxx"))
             self.timer_labels.append(QLabel("00:00"))
             # - connect -
-            self.plus_buttons[tray_id].clicked.connect(self.add_one_minute)
-            self.minus_buttons[tray_id].clicked.connect(self.remove_one_minute)
+            self.start_buttons[tray_id].clicked.connect(self.add_one_minute)
+            self.cancel_buttons[tray_id].clicked.connect(self.remove_one_minute)
             # - add widget -
-            left_bottom_oven_layouts[i].addWidget(self.plus_buttons[tray_id])
-            left_bottom_oven_layouts[i].addWidget(self.minus_buttons[tray_id])
+            left_bottom_oven_layouts[i].addWidget(self.start_buttons[tray_id])
+            left_bottom_oven_layouts[i].addWidget(self.cancel_buttons[tray_id])
             left_bottom_oven_layouts[i].addWidget(self.dish_labels[tray_id])
             left_bottom_oven_layouts[i].addWidget(self.timer_labels[tray_id])
             # - assemble -
@@ -140,18 +148,18 @@ class MainWindow(QMainWindow):
         for i in range (CENTRAL_OVEN_SPACES):
             # - append -
             central_oven_layouts.append(QHBoxLayout())
-            self.plus_buttons.append(QPushButton("+"))
-            self.plus_buttons[tray_id].tray_id = tray_id
-            self.minus_buttons.append(QPushButton("-"))
-            self.minus_buttons[tray_id].tray_id = tray_id
-            self.dish_labels.append(QLabel("QUICHE"))
+            self.start_buttons.append(QPushButton("start"))
+            self.start_buttons[tray_id].tray_id = tray_id
+            self.cancel_buttons.append(QPushButton("x"))
+            self.cancel_buttons[tray_id].tray_id = tray_id
+            self.dish_labels.append(QLabel("xxxx"))
             self.timer_labels.append(QLabel("00:00"))
             # - connect -
-            self.plus_buttons[tray_id].clicked.connect(self.add_one_minute)
-            self.minus_buttons[tray_id].clicked.connect(self.remove_one_minute)
+            self.start_buttons[tray_id].clicked.connect(self.add_one_minute)
+            self.cancel_buttons[tray_id].clicked.connect(self.remove_one_minute)
             # - add widget -
-            central_oven_layouts[i].addWidget(self.plus_buttons[tray_id])
-            central_oven_layouts[i].addWidget(self.minus_buttons[tray_id])
+            central_oven_layouts[i].addWidget(self.start_buttons[tray_id])
+            central_oven_layouts[i].addWidget(self.cancel_buttons[tray_id])
             central_oven_layouts[i].addWidget(self.dish_labels[tray_id])
             central_oven_layouts[i].addWidget(self.timer_labels[tray_id])
             # - assemble -
@@ -178,18 +186,18 @@ class MainWindow(QMainWindow):
         for i in range (TOP_RIGHT_OVEN_SPACES):
             # - append -
             right_top_oven_layouts.append(QHBoxLayout())
-            self.plus_buttons.append(QPushButton("+"))
-            self.plus_buttons[tray_id].tray_id = tray_id
-            self.minus_buttons.append(QPushButton("-"))
-            self.minus_buttons[tray_id].tray_id = tray_id
-            self.dish_labels.append(QLabel("QUICHE"))
+            self.start_buttons.append(QPushButton("start"))
+            self.start_buttons[tray_id].tray_id = tray_id
+            self.cancel_buttons.append(QPushButton("x"))
+            self.cancel_buttons[tray_id].tray_id = tray_id
+            self.dish_labels.append(QLabel("xxxx"))
             self.timer_labels.append(QLabel("00:00"))
             # - connect -
-            self.plus_buttons[tray_id].clicked.connect(self.add_one_minute)
-            self.minus_buttons[tray_id].clicked.connect(self.remove_one_minute)
+            self.start_buttons[tray_id].clicked.connect(self.add_one_minute)
+            self.cancel_buttons[tray_id].clicked.connect(self.remove_one_minute)
             # - add widget -
-            right_top_oven_layouts[i].addWidget(self.plus_buttons[tray_id])
-            right_top_oven_layouts[i].addWidget(self.minus_buttons[tray_id])
+            right_top_oven_layouts[i].addWidget(self.start_buttons[tray_id])
+            right_top_oven_layouts[i].addWidget(self.cancel_buttons[tray_id])
             right_top_oven_layouts[i].addWidget(self.dish_labels[tray_id])
             right_top_oven_layouts[i].addWidget(self.timer_labels[tray_id])
             # - assemble -
@@ -209,18 +217,18 @@ class MainWindow(QMainWindow):
         for i in range (BOTTOM_RIGHT_OVEN_SPACES):
             # - append -
             right_bottom_oven_layouts.append(QHBoxLayout())
-            self.plus_buttons.append(QPushButton("+"))
-            self.plus_buttons[tray_id].tray_id = tray_id
-            self.minus_buttons.append(QPushButton("-"))
-            self.minus_buttons[tray_id].tray_id = tray_id
-            self.dish_labels.append(QLabel("QUICHE"))
+            self.start_buttons.append(QPushButton("start"))
+            self.start_buttons[tray_id].tray_id = tray_id
+            self.cancel_buttons.append(QPushButton("x"))
+            self.cancel_buttons[tray_id].tray_id = tray_id
+            self.dish_labels.append(QLabel("xxxx"))
             self.timer_labels.append(QLabel("00:00"))
             # - connect -
-            self.plus_buttons[tray_id].clicked.connect(self.add_one_minute)
-            self.minus_buttons[tray_id].clicked.connect(self.remove_one_minute)
+            self.start_buttons[tray_id].clicked.connect(self.add_one_minute)
+            self.cancel_buttons[tray_id].clicked.connect(self.remove_one_minute)
             # - add widget -
-            right_bottom_oven_layouts[i].addWidget(self.plus_buttons[tray_id])
-            right_bottom_oven_layouts[i].addWidget(self.minus_buttons[tray_id])
+            right_bottom_oven_layouts[i].addWidget(self.start_buttons[tray_id])
+            right_bottom_oven_layouts[i].addWidget(self.cancel_buttons[tray_id])
             right_bottom_oven_layouts[i].addWidget(self.dish_labels[tray_id])
             right_bottom_oven_layouts[i].addWidget(self.timer_labels[tray_id])
             # - assemble -
@@ -243,7 +251,17 @@ class MainWindow(QMainWindow):
         print (self.sender().text())
 
     def selected_dish(self):
-        print (self.sender().text())
+        #print(self.sender().text())
+        for i in range (len(self.dishes_buttons)):
+            #print(self.dishes_buttons[i].text())
+            if  (self.sender().text() == self.dishes_buttons[i].text()):
+                self.dishes_buttons[i].setStyleSheet("background-color: green;")
+            else:
+                self.dishes_buttons[i].setStyleSheet("background-color: white;")
+
+    def update_time(self):
+        print("timer called")
+
 
 
 def main():
