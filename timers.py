@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):
         # ----- left ovens layout -----
         # -----------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: cyan;")
+        container_widget.setStyleSheet("background-color: blue;")
         main_layout.addWidget(container_widget)
         left_ovens_layout = QVBoxLayout(container_widget)
 
@@ -101,20 +101,20 @@ class MainWindow(QMainWindow):
             left_bottom_oven_layout.addLayout(left_bottom_oven_layouts[i])
             tray_id+=1
 
-        # - Assemble -
-        #left_ovens_layout.addLayout(left_top_oven_layout)
-        #left_ovens_layout.addLayout(left_bottom_oven_layout)
-
         # -----------------------------------
         # ----- DISHES AND CENTRAL OVEN -----
         # -----------------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: cyan;")
+        container_widget.setStyleSheet("background-color: blue;")
         main_layout.addWidget(container_widget)
         dishes_and_central_oven_layout = QVBoxLayout(container_widget)
 
         # ----- DISHES -----
-        dishes_layout = QVBoxLayout()
+        container_widget = QWidget()
+        container_widget.setStyleSheet("background-color: white;")
+        dishes_and_central_oven_layout.addWidget(container_widget)
+        dishes_layout = QVBoxLayout(container_widget)
+
         dishes_layout.addWidget(QLabel("DISHES"))
 
         self.dishes_buttons = []
@@ -128,7 +128,13 @@ class MainWindow(QMainWindow):
 
         # ----- central_oven -----
         central_oven_layout = QVBoxLayout()
-        dishes_layout.addWidget(QLabel("CENTRAL OVEN"))
+
+        container_widget = QWidget()
+        container_widget.setStyleSheet("background-color: white;")
+        dishes_and_central_oven_layout.addWidget(container_widget)
+        central_oven_layout = QVBoxLayout(container_widget)
+
+        central_oven_layout.addWidget(QLabel("CENTRAL OVEN"))
         # - init list -
         central_oven_layouts = []
         for i in range (CENTRAL_OVEN_SPACES):
@@ -152,20 +158,20 @@ class MainWindow(QMainWindow):
             central_oven_layout.addLayout(central_oven_layouts[i])
             tray_id+=1
 
-        # - Assemble -
-        dishes_and_central_oven_layout.addLayout(dishes_layout)
-        dishes_and_central_oven_layout.addLayout(central_oven_layout)
-
         # ------------------------------
         # ----- right ovens layout -----
         # ------------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: cyan;")
+        container_widget.setStyleSheet("background-color: blue;")
         main_layout.addWidget(container_widget)
         right_ovens_layout = QVBoxLayout(container_widget)
 
         # --- right_top_oven ---
-        right_top_oven_layout = QVBoxLayout()
+        container_widget = QWidget()
+        container_widget.setStyleSheet("background-color: white;")
+        right_ovens_layout.addWidget(container_widget)
+        right_top_oven_layout = QVBoxLayout(container_widget)
+
         right_top_oven_layout.addWidget(QLabel("TOP RIGHT OVEN"))
         # - init list -
         right_top_oven_layouts = []
@@ -191,7 +197,11 @@ class MainWindow(QMainWindow):
             tray_id+=1
 
         # right_bottom_oven
-        right_bottom_oven_layout = QVBoxLayout()
+        container_widget = QWidget()
+        container_widget.setStyleSheet("background-color: white;")
+        right_ovens_layout.addWidget(container_widget)
+        right_bottom_oven_layout = QVBoxLayout(container_widget)
+
         right_bottom_oven_layout.addWidget(QLabel("BOTTOM RIGHT OVEN"))
         # - init list -
         right_bottom_oven_layouts = []
@@ -216,10 +226,6 @@ class MainWindow(QMainWindow):
             # - assemble -
             right_bottom_oven_layout.addLayout(right_bottom_oven_layouts[i])
             tray_id+=1
-
-        # - Assemble -
-        right_ovens_layout.addLayout(right_top_oven_layout)
-        right_ovens_layout.addLayout(right_bottom_oven_layout)
 
 
     # all the initialized and opened things must be closed and terminated to exit nice
