@@ -15,6 +15,16 @@ CENTRAL_OVEN_SPACES=4
 TOP_RIGHT_OVEN_SPACES=5
 BOTTOM_RIGHT_OVEN_SPACES=5
 EMPTY="     "
+WIDGET_STYLE_BLUE="background-color: blue;font-size: 28px"
+WIDGET_STYLE_WHITE="background-color: white;font-size: 28px"
+
+DISHES = (\
+    "QUICHE", \
+    "BEANS", \
+    "HASH BROWN", \
+    "SPANISH RICE", \
+    "MASHED POTATOES", \
+    "PROTEIN VEGGIE")
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -48,13 +58,14 @@ class MainWindow(QMainWindow):
         # ----- left ovens layout -----
         # -----------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: blue;")
+        container_widget.setStyleSheet(WIDGET_STYLE_BLUE)
         main_layout.addWidget(container_widget)
         left_ovens_layout = QVBoxLayout(container_widget)
 
         # --- left_top_oven ---
         container_widget = QWidget()
         container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet(WIDGET_STYLE_WHITE)
         left_ovens_layout.addWidget(container_widget)
         left_top_oven_layout = QVBoxLayout(container_widget)
 
@@ -87,6 +98,7 @@ class MainWindow(QMainWindow):
         # --- left_bottom_oven ---
         container_widget = QWidget()
         container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet(WIDGET_STYLE_WHITE)
         left_ovens_layout.addWidget(container_widget)
         left_bottom_oven_layout = QVBoxLayout(container_widget)
 
@@ -120,24 +132,20 @@ class MainWindow(QMainWindow):
         # ----- DISHES AND CENTRAL OVEN -----
         # -----------------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: blue;")
+        container_widget.setStyleSheet(WIDGET_STYLE_BLUE)
         main_layout.addWidget(container_widget)
         dishes_and_central_oven_layout = QVBoxLayout(container_widget)
 
         # ----- DISHES -----
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet(WIDGET_STYLE_WHITE)
         dishes_and_central_oven_layout.addWidget(container_widget)
         dishes_layout = QVBoxLayout(container_widget)
-
         dishes_layout.addWidget(QLabel("DISHES"))
 
         self.dishes_buttons = []
-        self.dishes_buttons.append(QPushButton("QUICHE"))
-        self.dishes_buttons.append(QPushButton("BEANS"))
-        self.dishes_buttons.append(QPushButton("MASHED POTATOES"))
-        self.dishes_buttons.append(QPushButton("PROTEIN VEGGIE"))
-        for i in range (len(self.dishes_buttons)):
+        for i in range (len(DISHES)):
+            self.dishes_buttons.append(QPushButton(DISHES[i]))
             dishes_layout.addWidget(self.dishes_buttons[i])
             self.dishes_buttons[i].clicked.connect(self.select_dish)
 
@@ -145,7 +153,7 @@ class MainWindow(QMainWindow):
         central_oven_layout = QVBoxLayout()
 
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet(WIDGET_STYLE_WHITE)
         dishes_and_central_oven_layout.addWidget(container_widget)
         central_oven_layout = QVBoxLayout(container_widget)
 
@@ -179,13 +187,13 @@ class MainWindow(QMainWindow):
         # ----- right ovens layout -----
         # ------------------------------
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: blue;")
+        container_widget.setStyleSheet(WIDGET_STYLE_BLUE)
         main_layout.addWidget(container_widget)
         right_ovens_layout = QVBoxLayout(container_widget)
 
         # --- right_top_oven ---
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet(WIDGET_STYLE_WHITE)
         right_ovens_layout.addWidget(container_widget)
         right_top_oven_layout = QVBoxLayout(container_widget)
 
@@ -217,7 +225,7 @@ class MainWindow(QMainWindow):
 
         # right_bottom_oven
         container_widget = QWidget()
-        container_widget.setStyleSheet("background-color: white;")
+        container_widget.setStyleSheet(WIDGET_STYLE_WHITE)
         right_ovens_layout.addWidget(container_widget)
         right_bottom_oven_layout = QVBoxLayout(container_widget)
 
